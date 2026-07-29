@@ -1,0 +1,14 @@
+# Environment variables & Secrets
+.env
+*.env
+
+# Local ChromaDB Vector Store (cloud will build its own index from uploaded PDFs)
+chroma_db/
+*.sqlite3
+*.parquet
+
+# Python cache & virtual environments
+__pycache__/
+*.pyc
+venv/
+.env/
