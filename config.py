@@ -57,3 +57,23 @@ if not GROQ_API_KEY:
 # 3. Raise error only if both sources fail
 if not GROQ_API_KEY:
     raise ValueError("GROQ_API_KEY is missing. Please check your .env file or Streamlit Secrets setup.")
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# 1. Try reading from local .env / environment
+api_key = os.getenv("GROQ_API_KEY")
+
+# 2. If None, fallback to Streamlit Cloud Secrets
+if not api_key:
+    try:
+        import streamlit as st
+        api_key = st.secrets.get("GROQ_API_KEY", None)
+    except Exception:
+        pass
+
+# 3. Safety check to fail loudly if still missing
+if not api_key:
+    raise ValueError("GROQ_API_KEY is missing. Please check your .env file or Streamlit Secrets setup.")
