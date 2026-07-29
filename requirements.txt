@@ -8,3 +8,4 @@ langchain
 langchain-text-splitters
 langchain-community
 pypdf
+torchvision
